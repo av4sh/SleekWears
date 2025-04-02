@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SleekWears - Streetwear Collection</title>
+    <title>Your Cart | SleekWears</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">SLEEKWEARS</a>
+            <a class="navbar-brand" href="index.html">SLEEKWEARS</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <i class="fas fa-bars"></i>
             </button>
@@ -29,77 +28,40 @@
         </div>
     </nav>
 
-    <!-- Header Section -->
-    <header class="header-container">
+    <section class="cart-section py-5">
         <div class="container">
-            <h1>ELEVATE YOUR STREETWEAR</h1>
-            <p>Minimal designs. Maximum impact. Shop our latest collection.</p>
-            <a href="#" class="btn">SHOP NOW</a>
-        </div>
-    </header>
-
-    <!-- Latest Drops Section -->
-    <section class="latest-drops">
-        <div class="container">
-            <h2>LATEST DROPS</h2>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 product">
-                    <div class="product-inner">
-                        <img src="pics/all.png" alt="All Products">
-                        <h5>PREMIUM COLLECTION</h5>
-                        <p>$99.99</p>
-                        <div class="product-overlay">
-                            <button class="btn btn-dark">View Details</button>
-                        </div>
-                    </div>
+            <h2 class="mb-4">YOUR CART</h2>
+            <div id="cart-items" class="mb-4">
+                <div class="text-center py-5">
+                    <p>Your cart is empty</p>
+                    <a href="index.html" class="btn btn-dark">Continue Shopping</a>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 product">
-                    <div class="product-inner">
-                        <img src="pics/sweatshirt.png" alt="Sweatshirt">
-                        <h5>ESSENTIAL SWEATSHIRT</h5>
-                        <p>$69.99</p>
-                        <div class="product-overlay">
-                            <button class="btn btn-dark">View Details</button>
-                        </div>
-                    </div>
+            </div>
+            
+            <div class="cart-summary bg-light p-4 rounded">
+                <h4 class="mb-4">ORDER SUMMARY</h4>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 product">
-                    <div class="product-inner">
-                        <img src="pics/hoodie.png" alt="Hoodie">
-                        <h5>OVERSIZED HOODIE</h5>
-                        <p>$79.99</p>
-                        <div class="product-overlay">
-                            <button class="btn btn-dark">View Details</button>
-                        </div>
-                    </div>
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Shipping:</span>
+                    <span id="shipping">$5.00</span>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 product">
-                    <div class="product-inner">
-                        <img src="pics/pant.png" alt="Stylish Pants">
-                        <h5>STYLISH PANTS</h5>
-                        <p>$59.99</p>
-                        <div class="product-overlay">
-                            <button class="btn btn-dark">View Details</button>
-                        </div>
-                    </div>
+                <div class="d-flex justify-content-between mb-3">
+                    <span>Tax:</span>
+                    <span id="tax">$0.00</span>
                 </div>
+                <hr>
+                <div class="d-flex justify-content-between fw-bold">
+                    <span>Total:</span>
+                    <span id="total">$5.00</span>
+                </div>
+                <button id="checkout-btn" class="btn btn-dark w-100 mt-4">PROCEED TO CHECKOUT</button>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container text-center">
-            <h3>JOIN OUR NEWSLETTER</h3>
-            <p>Get 10% off your first order and updates on new drops</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Your email address">
-                <button type="submit" class="btn">SUBSCRIBE</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="row">
@@ -144,7 +106,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <p class="copyright">&copy; 2025 SLEEKWEARS. All rights reserved.</p>
+                    <p class="copyright">&copy; 2023 SLEEKWEARS. All rights reserved.</p>
                 </div>
             </div>
         </div>
