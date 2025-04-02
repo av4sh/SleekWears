@@ -12,6 +12,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // ====== THEME SWITCHER FUNCTIONALITY ======
+    const colorChanger = document.getElementById('colorChanger');
+    if (colorChanger) {
+        // Array of vibrant colors
+        const colors = [
+            '#FF5733', '#33FF57', '#3357FF', '#F033FF', 
+            '#FF33A8', '#33FFF5', '#8A2BE2', '#FF8C00',
+            '#4B0082', '#20B2AA', '#9370DB', '#32CD32',
+            '#FF4500', '#9400D3', '#008080', '#FFD700'
+        ];
+        
+        // Apply theme colors
+        function applyTheme(primaryColor, textColor) {
+            document.documentElement.style.setProperty('--theme-primary', primaryColor);
+            document.documentElement.style.setProperty('--theme-footer-bg', primaryColor);
+            document.documentElement.style.setProperty('--theme-secondary', textColor);
+            document.documentElement.style.setProperty('--theme-light-text', 
+                textColor === '#111' ? '#666' : 'rgba(255,255,255,0.7)');
+            
+            // Update all text colors immediately (no transition)
+            const header = document.querySelector('header');
+            const footer = document.querySelector('footer');
+            if (header) header.style.color = textColor;
+            if (footer) footer.style.color = textColor;
+            
+            // Update link colors
+            const headerLinks = header ? header.querySelectorAll('a') : [];
+            const footerLinks = footer ? footer.querySelectorAll('a') : [];
+            
+            headerLinks.forEach(link => link.style.color = textColor);
+            footerLinks.forEach(link => link.style.color = textColor);
+        }
+        
+        // Load saved theme if exists
+        if (localStorage.getItem('themePrimary')) {
+            applyTheme(
+                localStorage.getItem('themePrimary'),
+                localStorage.getItem('themeTextColor')
+            );
+        }
+        
+        colorChanger.addEventListener('click', function() {
+            // Get a random color (excluding colors too similar to current)
+            let randomColor;
+            const currentColor = localStorage.getItem('themePrimary') || '#000000';
+            
+            do {
+                randomColor = colors[Math.floor(Math.random() * colors.length)];
+            } while (randomColor === currentColor && colors.length > 1);
+            
+            // Calculate appropriate text color
+            const brightness = getBrightness(randomColor);
+            const textColor = brightness > 130 ? '#111' : '#fff';
+            
+            applyTheme(randomColor, textColor);
+            
+            // Save to localStorage
+            localStorage.setItem('themePrimary', randomColor);
+            localStorage.setItem('themeTextColor', textColor);
+        });
+        
+        // Helper function to determine color brightness
+        function getBrightness(hexColor) {
+            // Convert hex to RGB
+            const r = parseInt(hexColor.substr(1, 2), 16);
+            const g = parseInt(hexColor.substr(3, 2), 16);
+            const b = parseInt(hexColor.substr(5, 2), 16);
+            
+            // Calculate brightness (perceived luminance)
+            return (r * 299 + g * 587 + b * 114) / 1000;
+        }
+    }
+
+    // ====== EXISTING CART FUNCTIONALITY ======
     // Handle product details page
     if (window.location.pathname.includes('product-details.html')) {
         const params = new URLSearchParams(window.location.search);
@@ -140,5 +214,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         updateCartCount();
+    }
+    
+    // Apply theme immediately on page load for all pages
+    if (localStorage.getItem('themePrimary')) {
+        const root = document.documentElement;
+        root.style.setProperty('--theme-primary', localStorage.getItem('themePrimary'));
+        root.style.setProperty('--theme-footer-bg', localStorage.getItem('themePrimary'));
+        root.style.setProperty('--theme-secondary', localStorage.getItem('themeTextColor'));
+        root.style.setProperty('--theme-light-text', 
+            localStorage.getItem('themeTextColor') === '#111' ? '#666' : 'rgba(255,255,255,0.7)');
     }
 });
