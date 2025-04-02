@@ -86,6 +86,16 @@ a {
     font-size: 1.5rem;
 }
 
+/* Shopping Cart Icon */
+.nav-link .fa-shopping-cart {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover .fa-shopping-cart {
+    transform: scale(1.2);
+}
+
 /* ====== Header Section ====== */
 .header-container {
     text-align: center;
@@ -205,6 +215,100 @@ a {
 
 .product:hover img {
     transform: scale(1.03);
+}
+
+/* ====== About Page Styles ====== */
+.about-hero {
+    padding: 100px 0;
+    background-color: #f8f9fa;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.about-hero .lead {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.about-hero p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.brand-philosophy {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.brand-philosophy h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.brand-philosophy p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.philosophy-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+.philosophy-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.philosophy-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #000;
+    font-weight: bold;
+}
+
+.brand-promise {
+    padding: 100px 0;
+    background-color: #f8f9fa;
+}
+
+.brand-promise h2 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+    color: #000;
+}
+
+.promise-item {
+    padding: 30px 20px;
+}
+
+.promise-item i {
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.promise-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.promise-item p {
+    color: #666;
+    font-size: 1.1rem;
 }
 
 /* ====== Newsletter Section ====== */
@@ -357,6 +461,28 @@ a {
     .newsletter-form button {
         margin-top: 10px;
     }
+
+    /* About Page Responsive */
+    .about-hero {
+        padding: 60px 0;
+        text-align: center;
+    }
+    
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .brand-philosophy, .brand-promise {
+        padding: 60px 0;
+    }
+    
+    .brand-philosophy .col-lg-6:first-child {
+        margin-bottom: 40px;
+    }
+    
+    .promise-item {
+        margin-bottom: 30px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -366,5 +492,48 @@ a {
     
     .product img {
         height: 250px;
+    }
+
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    .brand-philosophy h2, 
+    .brand-promise h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ====== Product Detail Page ====== */
+.product-detail {
+    padding: 80px 0;
+}
+
+.product-detail img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
+
+.product-detail h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.product-detail .h4 {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        padding: 40px 0;
+    }
+    
+    .product-detail h2 {
+        font-size: 2rem;
     }
 }
