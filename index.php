@@ -108,10 +108,11 @@
         <div class="container text-center">
             <h3>Contact us</h3>
             <p>Submit your email to get in touch with us</p>
-            <form class="newsletter-form" action="../phpsubmit_email.php" method="POST">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <button type="submit" class="btn">SUBMIT</button>
-            </form>
+            <form class="newsletter-form" action="php/submit_email.php" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit" class="btn">SUBMIT</button>
+</form>
+
             
             
             
