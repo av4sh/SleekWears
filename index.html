@@ -6,7 +6,7 @@
     <title>SleekWears - Streetwear Collection</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -24,10 +24,13 @@
                         </button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="aboutus.html">About us</a>
+                        <a class="nav-link" href="html/aboutus.html">About us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="badge bg-danger">0</span></a>
+                        <a class="nav-link" href="html/cart.html"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="badge bg-danger">0</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="html/login.html">Profile</a>
                     </li>
                 </ul>
             </div>
@@ -35,23 +38,23 @@
     </nav>
 
     <!-- Header Section -->
- 
-<header class="header-container">
-    <div class="container">
-        <div class="header-top">
-            <h1>ELEVATE YOUR STREETWEAR</h1>
-            <p>Minimal designs. Maximum impact. Shop our latest collection.</p>
+    <header class="header-container">
+        <div class="container">
+            <div class="header-top">
+                <h1>ELEVATE YOUR STREETWEAR</h1>
+                <p>Minimal designs. Maximum impact. Shop our latest collection.</p>
+            </div>
+            <div class="header-border"></div>
+            <div class="header-bottom">
+                <a href="#latest-drops" class="vibe-btn three-d-btn">
+                    DISCOVER <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
         </div>
-        <div class="header-border"></div>
-        <div class="header-bottom">
-            <a href="#" class="vibe-btn three-d-btn">
-                DISCOVER <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
-    </div>
-</header>
+    </header>
+
     <!-- Latest Drops Section -->
-    <section class="latest-drops">
+    <section id="latest-drops" class="latest-drops">
         <div class="container">
             <h2>LATEST DROPS</h2>
             <div class="row">
@@ -98,15 +101,16 @@
             </div>
         </div>
     </section>
+    
 
     <!-- Newsletter Section -->
     <section class="newsletter">
         <div class="container text-center">
-            <h3>JOIN OUR NEWSLETTER</h3>
-            <p>Get 10% off your first order and updates on new drops</p>
+            <h3>Contact us</h3>
+            <p>Submit your email to get in touch with us</p>
             <form class="newsletter-form">
                 <input type="email" placeholder="Your email address">
-                <button type="submit" class="btn">SUBSCRIBE</button>
+                <button type="submit" class="btn">SUBMIT</button>
             </form>
         </div>
     </section>
@@ -115,7 +119,6 @@
     <footer class="site-footer">
         <div class="container">
             <div class="row">
-                
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-md-4 mb-4 mb-md-0">
@@ -125,10 +128,8 @@
                         <div class="col-md-4 mb-4 mb-md-0">
                             <h4 class="footer-heading">LINKS</h4>
                             <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Shipping Policy</a></li>
-                                <li><a href="#">Business</a></li>
+                                <li><a href="html/aboutus.html">About Us</a></li>
+                                <li><a href="html/contact-us.html">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
@@ -152,6 +153,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

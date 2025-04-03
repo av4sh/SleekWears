@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update cart count in navbar
     function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem('cart'));
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const count = cart.reduce((total, item) => total + parseInt(item.quantity), 0);
         document.querySelectorAll('#cart-count').forEach(el => {
-            el.textContent = cart.reduce((total, item) => total + parseInt(item.quantity), 0);
+            el.textContent = count || 0;
         });
     }
 
@@ -17,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (colorChanger) {
         // Array of vibrant colors
         const colors = [
-            '#FF5733', '#33FF57', '#3357FF', '#F033FF', 
+            '#FF5733', '#33FF57', '#3357FF', '#F033FF',
             '#FF33A8', '#33FFF5', '#8A2BE2', '#FF8C00',
             '#4B0082', '#20B2AA', '#9370DB', '#32CD32',
             '#FF4500', '#9400D3', '#008080', '#FFD700'
         ];
-        
+
         // Apply theme colors
         function applyTheme(primaryColor, textColor) {
             document.documentElement.style.setProperty('--theme-primary', primaryColor);
@@ -30,21 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.style.setProperty('--theme-secondary', textColor);
             document.documentElement.style.setProperty('--theme-light-text', 
                 textColor === '#111' ? '#666' : 'rgba(255,255,255,0.7)');
-            
+
             // Update all text colors immediately (no transition)
             const header = document.querySelector('header');
             const footer = document.querySelector('footer');
             if (header) header.style.color = textColor;
             if (footer) footer.style.color = textColor;
-            
+
             // Update link colors
             const headerLinks = header ? header.querySelectorAll('a') : [];
             const footerLinks = footer ? footer.querySelectorAll('a') : [];
-            
+
             headerLinks.forEach(link => link.style.color = textColor);
             footerLinks.forEach(link => link.style.color = textColor);
         }
-        
+
         // Load saved theme if exists
         if (localStorage.getItem('themePrimary')) {
             applyTheme(
@@ -52,34 +53,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.getItem('themeTextColor')
             );
         }
-        
+
         colorChanger.addEventListener('click', function() {
             // Get a random color (excluding colors too similar to current)
             let randomColor;
             const currentColor = localStorage.getItem('themePrimary') || '#000000';
-            
+
             do {
                 randomColor = colors[Math.floor(Math.random() * colors.length)];
             } while (randomColor === currentColor && colors.length > 1);
-            
+
             // Calculate appropriate text color
             const brightness = getBrightness(randomColor);
             const textColor = brightness > 130 ? '#111' : '#fff';
-            
+
             applyTheme(randomColor, textColor);
-            
+
             // Save to localStorage
             localStorage.setItem('themePrimary', randomColor);
             localStorage.setItem('themeTextColor', textColor);
         });
-        
+
         // Helper function to determine color brightness
         function getBrightness(hexColor) {
             // Convert hex to RGB
             const r = parseInt(hexColor.substr(1, 2), 16);
             const g = parseInt(hexColor.substr(3, 2), 16);
             const b = parseInt(hexColor.substr(5, 2), 16);
-            
+
             // Calculate brightness (perceived luminance)
             return (r * 299 + g * 587 + b * 114) / 1000;
         }
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'cart.html';
         });
     }
+
     // Handle cart page
     else if (window.location.pathname.includes('cart.html')) {
         const cart = JSON.parse(localStorage.getItem('cart'));
@@ -199,9 +201,30 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateCartCount();
     }
+
+    // Handle checkout page (order summary update)
+    else if (window.location.pathname.includes('checkout.html')) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let subtotal = 0;
+        const shipping = 5.00; // Fixed shipping fee
+        
+        cart.forEach(item => {
+            const price = parseFloat(item.price.replace('$', '').trim());
+            const quantity = parseInt(item.quantity);
+            subtotal += price * quantity;
+        });
+
+        const tax = subtotal * 0.1;
+        const total = subtotal + shipping + tax;
+
+        // Update order summary
+        document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('total-amount').textContent = `$${total.toFixed(2)}`;
+    }
+
     // Handle home page
     else {
-        // Add click handlers to product cards
         const products = document.querySelectorAll('.product-inner');
         products.forEach(product => {
             product.addEventListener('click', function() {
@@ -209,13 +232,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const price = this.querySelector('p').textContent;
                 const image = this.querySelector('img').src;
                 
-                window.location.href = `product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}`;
+                window.location.href = `html/product-details.html?name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&image=${encodeURIComponent(image)}`;
             });
         });
         
         updateCartCount();
     }
-    
+
     // Apply theme immediately on page load for all pages
     if (localStorage.getItem('themePrimary')) {
         const root = document.documentElement;
